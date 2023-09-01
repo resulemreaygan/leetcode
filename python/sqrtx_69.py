@@ -6,13 +6,19 @@ Author: Resul Emre AYGAN
 class Solution:
     @staticmethod
     def my_sqrt(x: int) -> int:
-        # Newton-Raphson method
+        # Binary Search
 
-        epsilon_number = 1e-6  # epsilon parameter that specifies the desired level of precision
+        left, right = 0, x
 
-        temp_number = x / 2.0
+        while left <= right:
+            mid = (left + right) // 2
 
-        while abs(temp_number * temp_number - x) > epsilon_number:
-            temp_number = (temp_number + x / temp_number) / 2.0
+            if mid * mid == x:
+                return mid
 
-        return int(temp_number)
+            if mid * mid < x:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        return right
